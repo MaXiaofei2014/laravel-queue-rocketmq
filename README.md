@@ -31,9 +31,15 @@
 </div>
 
 ## Installation
-
+First add the follow into your require
+```require
+"require":{
+    "：/laravel-queue-rocketmq": "master-dev",
+}
+```
+Second run:
   ```shell
-  composer require freyo/laravel-queue-rocketmq
+  composer update
   ```
 
 ## Configure
