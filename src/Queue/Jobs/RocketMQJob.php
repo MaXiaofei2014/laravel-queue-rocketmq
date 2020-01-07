@@ -115,10 +115,18 @@ class RocketMQJob extends Job implements JobContract
     public function delete()
     {
         parent::delete();
-
+        //add by maxiaofei at 2020-01-08 start
+        if(is_string($this->message->getReceiptHandle()))
+        {
+            $messageGetReceiptHandles = [$this->message->getReceiptHandle()];
+        }else{
+            $messageGetReceiptHandles = $this->message->getReceiptHandle();
+        }
         $this->connection
             ->getConsumer($this->getQueue())
-            ->ackMessage($this->message->getReceiptHandle());
+            ->ackMessage($messageGetReceiptHandles);
+//            ->ackMessage($this->message->getReceiptHandle());
+        //add by maxiaofei at 2020-01-08 end
     }
 
     /**
